@@ -1,14 +1,18 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
+﻿using Domain.Interface;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Domain.Models
 {
-    public class Flights
+    public class Flight
     {
+        [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
 
         public Guid Id { get; set; }
 

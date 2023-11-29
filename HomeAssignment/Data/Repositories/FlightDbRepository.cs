@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Data.DataContext;
+using Domain.Interface;
+using Domain.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,14 +11,20 @@ namespace Data.Repositories
 {
     public class FlightDbRepository
     {
-        public void GetFlight()
-        {
-
+        private AirlineDbContext _airlineDbContext;
+        public FlightDbRepository(AirlineDbContext airlineDbContext) 
+        { 
+            _airlineDbContext = airlineDbContext;
         }
 
-        public void GetFlights()
+        public IQueryable<Flight> GetFlights()
         {
+            return _airlineDbContext.Flights;
+        }
 
+        public Flight? GetFlight(Guid id)
+        {
+            return GetFlights().SingleOrDefault(x => x.Id == id);
         }
     }
 }
